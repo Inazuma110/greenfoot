@@ -1,0 +1,96 @@
+\documentclass[uplatex]{jsarticle}
+
+\usepackage{mylatex}
+\usepackage{ap3}
+\usepackage{ascmac}
+\usepackage{listings}
+\usepackage[dvipdfmx]{graphicx}
+
+\title{第七回応用プログラミング3}
+\author{C0117035 伊藤柊太}
+\date{5月24日}
+
+\begin{document}
+\maketitle
+
+\section{World.javaの説明}
+\subsection{コンストラクタ}
+14行目で600*400のウィンドウを作る。18行目で、引数に取られているpathの画像をImageIcon型のオブジェクトicon1に設定する。23行目で初期位置(0,0)に画像を配置する。
+
+\subsection{sleepメソッドの説明}
+引数tだけなにも処理を行わない。
+
+\subsection{moveObjの説明}
+while文で画像の移動を永続的に行う。42行目で画像の現在のx座標を10ずつ移動する。なお、43行目で引数x,yを超えた範囲に移動した際に元の位置に戻す。48行目でsleepにより、100ms動作を停止する。
+
+\begin{lstlisting}[caption=World.java,numbers = left]
+import java.awt.*;
+import javax.swing.*;
+
+class World extends JFrame {
+  JPanel p;
+  ImageIcon icon1;
+  JLabel label;
+  Container contentPane;
+
+  int nx = 0, ny = 0;
+
+  public World(String title){
+    setTitle(title);
+    setBounds(100, 100, 600, 400);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    p = new JPanel();
+
+    icon1 = new ImageIcon("./pict/pica.png");
+
+    label = new JLabel(icon1);// JlabelにImageIconをセット
+
+    p.setLayout(null);
+    label.setBounds(nx, ny, 100, 100);
+
+    p.add(label);// JpanelにJlabelを張り込む
+
+    contentPane = getContentPane();
+    contentPane.add(p, BorderLayout.CENTER);
+
+
+  }
+
+  public void sleep(long t) throws InterruptedException{
+    Thread.sleep(t);
+  }
+
+  public void moveObj(int x, int y){
+    try {
+      while(true){
+        System.out.println(nx);
+        System.out.println(ny);
+        nx += 10;
+        if (nx > x || ny > y){
+          nx = 0;
+          ny = 0;
+        }
+        label.setLocation(nx, ny);
+        sleep(100);
+      }
+    } catch(InterruptedException ie) {
+
+    }
+  }
+}
+\end{lstlisting}
+
+\section{Main.javaの説明}
+3行目でWorld型のオブジェクトwを引数"step3"で作成する。5行目で画像を動かす。
+
+\begin{lstlisting}[caption=World.java, numbers=left]
+class Main{
+  public static void main(String[] args) {
+    World w = new World("step3");
+    w.setVisible(true);
+    w.moveObj(100, 100);
+  }
+}
+\end{lstlisting}
+
+\end{document}

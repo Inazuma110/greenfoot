@@ -7,4 +7,9 @@ class Pica extends Actor{
     super(x, y);
   }
 
+  @Override
+  public void act(){
+    if(!isAtEdge())
+    super.moveObj(1);
+  }
 }

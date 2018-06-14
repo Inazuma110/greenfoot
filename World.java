@@ -7,10 +7,9 @@ class World extends JFrame {
   // ImageIcon icon1;
   // JLabel label;
   static JPanel p;
-  ImageIcon icon;
-  Container contentPane;
+  static Container contentPane;
 
-  List<Actor> actorList = new ArrayList<Actor>();
+  static List<Actor> actorList = new ArrayList<Actor>();
 
   public World(String title){
     setTitle(title);
@@ -28,16 +27,18 @@ class World extends JFrame {
     actorList.add(object);
   }
 
-  // public void sleep(long t) throws InterruptedException{
-  //   Thread.sleep(t);
-  // }
-
   // } catch(InterruptedException ie) {
 
 
   public void act(){
-    for(Actor a : actorList){
-      a.act();
+    while(true){
+      for(Actor a : actorList){
+        a.act();
+        contentPane = getContentPane();
+        p.setLayout(null);
+        // p.add(label);// JpanelにJlabelを張り込む
+        // contentPane.add(p, BorderLayout.CENTER);
+      }
     }
   }
 }

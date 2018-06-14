@@ -35,22 +35,21 @@ public class Actor{
   }
 
   public boolean isAtEdge(){
-    if(x <= 0 || x >= 600 || y <= 0 || y >= 400) return true;
+  if(x < 0 || x > 500 || y < 0 || y > 400) return true;
     else return false;
   }
 
-  public void setRocation(int x, int y){
-    label.setLocation(x, y);
-  }
+  // public void setRocation(int x, int y){
+  //   label.setLocation(x, y);
+  // }
 
   public void moveObj(int d){
     int nx = (int)(d * Math.cos(direction));
     int ny = (int)(d * Math.sin(direction));
-    if(!isAtEdge()){
-      x = nx;
-      y = ny;
-    }
-    label.setLocation(nx, ny);
+    x += nx;
+    y += ny;
+    label.setBounds(x, y, 100, 100);
+    World.p.add(label);// JpanelにJlabelを張り込む
   }
 
   public void turn (int amount){

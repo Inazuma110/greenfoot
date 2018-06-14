@@ -39,8 +39,8 @@ public class Actor{
     else return false;
   }
 
-  public void setLocation(int x, int y){
-    // label.setLocation(x, y);
+  public void setRocation(int x, int y){
+    label.setLocation(x, y);
   }
 
   public void moveObj(int d){

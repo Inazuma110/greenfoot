@@ -8,7 +8,6 @@ class World extends JFrame {
   // JLabel label;
   static JPanel p;
   ImageIcon icon;
-  JLabel label;
   Container contentPane;
 
   List<Actor> actorList = new ArrayList<Actor>();

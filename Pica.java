@@ -9,7 +9,9 @@ class Pica extends Actor{
 
   @Override
   public void act(){
-    if(!isAtEdge())
-    super.moveObj(1);
+    if(!super.isAtEdge()) super.moveObj(1);
+    // else super.setLocation(100,100);
+    // super.moveObj(1);
+
   }
 }

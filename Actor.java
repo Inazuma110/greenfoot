@@ -39,21 +39,30 @@ public class Actor{
     else return false;
   }
 
-  // public void setRocation(int x, int y){
-  //   label.setLocation(x, y);
-  // }
-
-  public void moveObj(int d){
-    int nx = (int)(d * Math.cos(direction));
-    int ny = (int)(d * Math.sin(direction));
-    x += nx;
-    y += ny;
+  public void setLocation(int x, int y){
+    this.x = x;
+    this.y = y;
     label.setBounds(x, y, 100, 100);
     World.p.add(label);// JpanelにJlabelを張り込む
   }
 
-  public void turn (int amount){
+  public void moveObj(int d){
+    try{
+      int nx = (int)(d * Math.cos(direction));
+      int ny = (int)(d * Math.sin(direction));
+      x += nx;
+      y += ny;
+      sleep(4);
+      this.setLocation(x, y);
+    }catch (InterruptedException ie) {
 
+    }
+    // label.setBounds(x, y, 100, 100);
+    // World.p.add(label);// JpanelにJlabelを張り込む
+  }
+
+  public void turn (int amount){
+    direction = amount;
   }
 
   public World getWorld(){
@@ -67,4 +76,8 @@ public class Actor{
   // protected boolean isTouching (Java.lang.Class<Actor> cls){
   //   return false;
   // }
+  public void sleep(long t) throws InterruptedException{
+    Thread.sleep(t);
+  }
+
 }

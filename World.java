@@ -17,7 +17,6 @@ class World extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     contentPane = getContentPane();
     p = new JPanel();
-
     p.setLayout(null);
     // p.add(label);// JpanelにJlabelを張り込む
     contentPane.add(p, BorderLayout.CENTER);
@@ -27,17 +26,10 @@ class World extends JFrame {
     actorList.add(object);
   }
 
-  // } catch(InterruptedException ie) {
-
-
   public void act(){
     while(true){
       for(Actor a : actorList){
         a.act();
-        contentPane = getContentPane();
-        p.setLayout(null);
-        // p.add(label);// JpanelにJlabelを張り込む
-        // contentPane.add(p, BorderLayout.CENTER);
       }
     }
   }

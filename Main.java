@@ -7,9 +7,5 @@ class Main{
     w.addObject(pica1);
     w.setVisible(true);
     w.act();
-    // w.moveObj(100, 100);
-    // for (int i = 0; i < 100000; i++) {
-    //   w.act();
-    // }
   }
 }

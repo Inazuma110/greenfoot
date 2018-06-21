@@ -3,9 +3,6 @@ import javax.swing.*;
 import java.util.List;
 import java.util.ArrayList;
 class World extends JFrame {
-  // JPanel p;
-  // ImageIcon icon1;
-  // JLabel label;
   static JPanel p;
   static Container contentPane;
 

@@ -1,13 +1,12 @@
 import java.awt.*;
 import javax.swing.*;
+import java.lang.*;
 
 public class Actor{
   private int x, y;
   double direction = 0;
-  JPanel p;
   ImageIcon icon;
   JLabel label;
-  Container contentPane;
 
   public Actor(int x, int y){
     this.x = x;
@@ -18,11 +17,10 @@ public class Actor{
     // p.setLayout(null);
     label.setBounds(x, y, 100, 100);
     World.p.add(label);// JpanelにJlabelを張り込む
-    // contentPane.add(p, BorderLayout.CENTER);
-    //
   }
 
   public void act(){
+    // 子クラスにオーバーライドされる
 
   }
 
@@ -35,7 +33,7 @@ public class Actor{
   }
 
   public boolean isAtEdge(){
-  if(x < 0 || x > 500 || y < 0 || y > 400) return true;
+  if(x < 0 || x > 500 || y < 0 || y > 300) return true;
     else return false;
   }
 
@@ -48,8 +46,8 @@ public class Actor{
 
   public void moveObj(int d){
     try{
-      int nx = (int)(d * Math.cos(direction));
-      int ny = (int)(d * Math.sin(direction));
+      double nx = Math.round(d * Math.cos(Math.toRadians(direction)));
+      double ny = Math.round(d * Math.sin(Math.toRadians(direction)));
       x += nx;
       y += ny;
       sleep(4);
@@ -57,27 +55,29 @@ public class Actor{
     }catch (InterruptedException ie) {
 
     }
-    // label.setBounds(x, y, 100, 100);
-    // World.p.add(label);// JpanelにJlabelを張り込む
   }
 
-  public void turn (int amount){
-    direction = amount;
+  public void turn(int rotation)
+  {
+    // System.out.println(direction);
+    direction += rotation;
+    if(direction >= 360) direction -= 360;
+    moveObj(10);
   }
 
   public World getWorld(){
     return null;
   }
 
-  // protected <A> java.util.List<A> getIntersectingObjects(java.lang.Class<A> cls){
-  //   return null;
-  // }
-  //
-  // protected boolean isTouching (Java.lang.Class<Actor> cls){
-  //   return false;
-  // }
+  protected <Actor> java.util.List<Actor> getIntersectingObjects(java.lang.Class<Actor> cls){
+    return null;
+  }
+
+  protected boolean isTouching(java.lang.Class<Actor> cls){
+    return false;
+  }
+
   public void sleep(long t) throws InterruptedException{
     Thread.sleep(t);
   }
-
 }

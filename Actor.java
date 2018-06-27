@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 import java.lang.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Actor{
   private int x, y;
@@ -33,7 +35,7 @@ public class Actor{
   }
 
   public boolean isAtEdge(){
-  if(x < 0 || x > 500 || y < 0 || y > 300) return true;
+  if(x < 0 || x > 525 || y < 0 || y > 300) return true;
     else return false;
   }
 
@@ -50,7 +52,7 @@ public class Actor{
       double ny = Math.round(d * Math.sin(Math.toRadians(direction)));
       x += nx;
       y += ny;
-      sleep(4);
+      sleep(5);
       this.setLocation(x, y);
     }catch (InterruptedException ie) {
 
@@ -69,12 +71,22 @@ public class Actor{
     return null;
   }
 
-  protected <Actor> java.util.List<Actor> getIntersectingObjects(java.lang.Class<Actor> cls){
-    return null;
+  protected java.util.List<Actor> getIntersectingObjects(java.lang.Class<Actor> cls){
+    List<Actor> l = new ArrayList<>();
+    for(Actor a : World.actorList){
+      if(Math.abs(a.x - this.x) + Math.abs(a.y - this.y) <= 10 && (a.x != this.x && a.y != this.y)){
+        l.add(a);
+      }
+    }
+    // if(l.size() != 0) this.moveObj(15);
+    return l;
   }
 
   protected boolean isTouching(java.lang.Class<Actor> cls){
-    return false;
+    List<Actor> l = new ArrayList<>();
+    l = getIntersectingObjects(Actor.class);
+    if(l.size() != 0) return true;
+    else return false;
   }
 
   public void sleep(long t) throws InterruptedException{

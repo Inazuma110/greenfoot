@@ -41,16 +41,11 @@ public class Actor{
   }
 
   public void moveObj(int d){
-    try{
-      double nx = Math.round(d * Math.cos(Math.toRadians(direction)));
-      double ny = Math.round(d * Math.sin(Math.toRadians(direction)));
-      x += nx;
-      y += ny;
-      sleep(5);
-      this.setLocation(x, y);
-    }catch (InterruptedException ie) {
-      ie.printStackTrace();
-    }
+    double nx = Math.round(d * Math.cos(Math.toRadians(direction)));
+    double ny = Math.round(d * Math.sin(Math.toRadians(direction)));
+    x += nx;
+    y += ny;
+    this.setLocation(x, y);
   }
 
   public void turn(int rotation)
@@ -67,7 +62,7 @@ public class Actor{
   protected java.util.List<Actor> getIntersectingObjects(java.lang.Class<Actor> cls){
     List<Actor> l = new ArrayList<>();
     for(Actor a : World.actorList){
-      if(Math.abs(a.x - this.x) + Math.abs(a.y - this.y) <= 15 && (a.x != this.x && a.y != this.y)){
+      if(Math.abs(a.x - this.x) + Math.abs(a.y - this.y) <= 50 && (a.x != this.x && a.y != this.y)){
         l.add(a);
       }
     }
@@ -81,7 +76,4 @@ public class Actor{
     else return true;
   }
 
-  public void sleep(long t) throws InterruptedException{
-    Thread.sleep(t);
-  }
 }

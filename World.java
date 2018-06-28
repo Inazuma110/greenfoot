@@ -6,7 +6,7 @@ import java.util.ArrayList;
 class World extends JFrame{
   static JPanel p;
   static Container contentPane;
-  Timer t;
+  static int WORLDX = 600, WORLDY = 400;
 
   static List<Actor> actorList = new ArrayList<Actor>();
 
@@ -18,21 +18,26 @@ class World extends JFrame{
     p = new JPanel();
     p.setLayout(null);
     contentPane.add(p, BorderLayout.CENTER);
-    t = new Timer(200, null);
-
   }
 
   public void addObject(Actor object){
     actorList.add(object);
   }
 
+  public void sleep(long t) throws InterruptedException{
+    Thread.sleep(t);
+  }
+
   public void act(){
     while(true){
-      t.start();
       for(Actor a : actorList){
         a.act();
+        try{
+          sleep(5);
+        }catch(InterruptedException ie){
+          ie.printStackTrace();
+        }
       }
-      t.stop();
     }
   }
 }

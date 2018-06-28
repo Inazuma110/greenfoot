@@ -32,7 +32,6 @@ public class Wambat1 extends Actor implements Janken
       }else{
         turn(100);
       }
-      // moveObj(3);
     }else if (isAtEdge()){
       turn(100);
     }else{
@@ -56,7 +55,6 @@ public class Wambat1 extends Actor implements Janken
       return 1;
     }else{
       turn(100);
-      // moveObj(3);
       return 2;
     }
   }

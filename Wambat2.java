@@ -16,7 +16,6 @@ public class Wambat2 extends Actor implements Janken
   @Override
   public void act()
   {
-    // System.out.println("AAAAA222");
     if(super.isTouching(Actor.class)){
       List<Actor> l = getIntersectingObjects(Actor.class);
       Actor aite = l.get(0);
@@ -34,22 +33,18 @@ public class Wambat2 extends Actor implements Janken
       }else{
         turn(100);
       }
-      // moveObj(3);
     }else if (isAtEdge()){
       turn(100);
-      // moveObj(3);
     }else{
       moveObj(1);
     }
   }
 
   public int katta(int id, int jhNum1){
-    // System.out.println("ya");
     if(this.id > id){
       moveObj(11);
       return -1;
     }
-    // System.out.println("ya");
     Random rand = new Random();
     int jhNum2 = rand.nextInt(3);
     System.out.println("Wambat2: " + judgeHand(jhNum2));
@@ -62,7 +57,6 @@ public class Wambat2 extends Actor implements Janken
       return 1;
     }else{
       turn(100);
-      // moveObj(3);
       return 2;
     }
   }

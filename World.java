@@ -17,9 +17,9 @@ class World extends JFrame{
     contentPane = getContentPane();
     p = new JPanel();
     p.setLayout(null);
-    // p.add(label);// JpanelにJlabelを張り込む
     contentPane.add(p, BorderLayout.CENTER);
     t = new Timer(200, null);
+
   }
 
   public void addObject(Actor object){

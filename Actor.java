@@ -55,7 +55,6 @@ public class Actor{
 
   public void turn(int rotation)
   {
-    // System.out.println(direction);
     direction += rotation;
     if(direction >= 360) direction -= 360;
     moveObj(10);

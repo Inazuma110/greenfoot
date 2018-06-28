@@ -13,12 +13,6 @@ public class Actor{
   public Actor(int x, int y){
     this.x = x;
     this.y = y;
-    // p = new JPanel();
-    icon = new ImageIcon("./pict/pica.png");
-    label = new JLabel(icon);// JlabelにImageIconをセット
-    // p.setLayout(null);
-    label.setBounds(x, y, 100, 100);
-    World.p.add(label);// JpanelにJlabelを張り込む
   }
 
   public void act(){
@@ -35,7 +29,7 @@ public class Actor{
   }
 
   public boolean isAtEdge(){
-  if(x < 0 || x > 525 || y < 0 || y > 300) return true;
+  if(x < 0 || x > 500 || y < 0 || y > 300) return true;
     else return false;
   }
 
@@ -55,7 +49,7 @@ public class Actor{
       sleep(5);
       this.setLocation(x, y);
     }catch (InterruptedException ie) {
-
+      ie.printStackTrace();
     }
   }
 
@@ -74,19 +68,18 @@ public class Actor{
   protected java.util.List<Actor> getIntersectingObjects(java.lang.Class<Actor> cls){
     List<Actor> l = new ArrayList<>();
     for(Actor a : World.actorList){
-      if(Math.abs(a.x - this.x) + Math.abs(a.y - this.y) <= 10 && (a.x != this.x && a.y != this.y)){
+      if(Math.abs(a.x - this.x) + Math.abs(a.y - this.y) <= 15 && (a.x != this.x && a.y != this.y)){
         l.add(a);
       }
     }
-    // if(l.size() != 0) this.moveObj(15);
     return l;
   }
 
   protected boolean isTouching(java.lang.Class<Actor> cls){
     List<Actor> l = new ArrayList<>();
     l = getIntersectingObjects(Actor.class);
-    if(l.size() != 0) return true;
-    else return false;
+    if(l.size() == 0) return false;
+    else return true;
   }
 
   public void sleep(long t) throws InterruptedException{

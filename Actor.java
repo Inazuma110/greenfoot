@@ -29,7 +29,7 @@ public class Actor{
   }
 
   public boolean isAtEdge(){
-  if(x < 0 || x > 500 || y < 0 || y > 300) return true;
+  if(x < 0 || x > World.WORLDX - 100|| y < 0 || y > World.WORLDY- 100) return true;
     else return false;
   }
 

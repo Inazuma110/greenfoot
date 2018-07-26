@@ -12,7 +12,7 @@ class World extends JFrame{
 
   public World(String title){
     setTitle(title);
-    setBounds(100, 100, 600, 400);
+    setBounds(100, 100, WORLDX, WORLDY);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     contentPane = getContentPane();
     p = new JPanel();
@@ -20,7 +20,7 @@ class World extends JFrame{
     contentPane.add(p, BorderLayout.CENTER);
   }
 
-  public void addObject(Actor object){
+  public static void addObject(Actor object){
     actorList.add(object);
   }
 
